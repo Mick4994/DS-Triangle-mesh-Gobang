@@ -7,9 +7,15 @@
 #include "../include/ChessBoardUI.h"
 
 void DrawCloseButton() {
+    RECT R1={CLOSE_X - CLOSE_R, CLOSE_Y - CLOSE_R, CLOSE_X + CLOSE_R, CLOSE_Y + CLOSE_R};
     setfillcolor(RED);
     fillcircle(CLOSE_X, CLOSE_Y, CLOSE_R);
-};
+    settextcolor(WHITE);
+//    setlinecolor(RED);
+    setbkmode(TRANSPARENT);
+    drawtext('x',&R1,DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+
+}
 
 void ChessDotAction(ExMessage& exMessage, ChessBoard& chessBoard, int& count) {
     for (int i = 0; i < BOARD_WEIGHT; i++) {

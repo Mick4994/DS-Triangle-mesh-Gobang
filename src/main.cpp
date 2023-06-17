@@ -29,7 +29,8 @@ int main() {
                 fillcircle(
                         j * HEIGHT_GRAPE + HEIGHT_GRAPE / 2 + X_MOVE,
                         i * WEIGHT_GRAPE + WEIGHT_GRAPE,
-                        DRAW_RADIUS);
+                        DRAW_RADIUS
+                        );
             }
         }
     }
