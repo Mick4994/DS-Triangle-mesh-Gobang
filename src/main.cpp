@@ -3,8 +3,9 @@
 //
 
 #include <iostream>
-#include <graphics.h>
+#include "../lib64/graphics.h"
 #include <conio.h>
+#include <vector>
 
 #include "../include/ChessBoardUI.h"
 #include "../include/ChessBoardInit.h"
@@ -34,6 +35,10 @@ int main() {
             }
         }
     }
+
+//    std::vector<GomokuNode*> xyz[3][15];
+
+    GomokuNode* xyzBoard[3][15][15];
 
     bool isExit = false;
     int count = 0;

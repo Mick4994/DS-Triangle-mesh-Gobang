@@ -12,10 +12,12 @@ link_libraries(
 
 add_executable(
         EasyX
-        src/ChessBoardUI.cpp
+
         include/ChessBoardUI.h
-        src/main.cpp
-        src/ChessBoardInit.cpp
         include/ChessBoardInit.h
+
+        src/main.cpp
+        src/ChessBoardUI.cpp
+        src/ChessBoardInit.cpp
 )
 
