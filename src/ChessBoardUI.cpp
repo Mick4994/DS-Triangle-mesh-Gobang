@@ -1,7 +1,7 @@
 //
 // Created by Mick4994 on 2023/6/17.
 //
-#include <graphics.h>
+#include "../lib64/graphics.h"
 #include <cmath>
 #include <iostream>
 #include "../include/ChessBoardUI.h"
