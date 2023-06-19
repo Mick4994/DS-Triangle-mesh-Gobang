@@ -21,5 +21,5 @@ add_executable(
         src/ChessBoardUI.cpp
         src/ChessBoardInit.cpp
         src/JudgeWin.cpp
-        )
+        include/BoardEvaluate.h src/BoardEvaluate.cpp)
 
