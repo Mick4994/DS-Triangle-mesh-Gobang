@@ -116,7 +116,7 @@ void aiMakeMove(ChessBoard &board)
             if (board.Board[i][j] == 0)
             {
                 // 在当前位置落子
-                board.Board[i][j] = 2;
+                board.Board[i][j] = 1;
                 //board.printBoard();
                 // 评估当前局面分数
                 int score = minimax(board, 0, -999999, 999999, false);
