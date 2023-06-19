@@ -2,13 +2,10 @@
 // Created by Mick4994 on 2023/6/17.
 //
 
-#include <iostream>
 #include "../lib64/graphics.h"
-#include <conio.h>
-#include <vector>
 
 #include "../include/ChessBoardUI.h"
-#include "../include/ChessBoardInit.h"
+
 
 int ChessBoard::full = 0;
 int ChessBoard::count = 0;

@@ -109,9 +109,9 @@ void StopGame(int chessBoard[][15]) {
     }
 }
 
-void PrintJudgeWin(int chessBoard[][15], int row, int cel)
+void PrintJudgeWin(int chessBoard[][15], int row, int cel, int& res)
 {
-    int res = JudgeWin(chessBoard, row, cel);
+    res = JudgeWin(chessBoard, row, cel);
     if (res == CONTINUE) {
         std::cout << "Continue" << std::endl;
     }

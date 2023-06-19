@@ -10,9 +10,8 @@
 
     #include "../lib64/graphics.h"
 
-    #define BOARD_WEIGHT 29
-    #define BOARD_HEIGHT 15
     #define NOT_READY -1
+    #define NONE 0
 
     #define HEIGHT_GRAPE 30
     #define WEIGHT_GRAPE 20
@@ -31,11 +30,13 @@
     #define CLOSE_Y 20
     #define CLOSE_R 15
 
-    #define BLACK_CHESS 2
+    #define BLACK_CHESS 1
+    #define WHITE_CHESS 2
 
     void DrawCloseButton();
     void ChessDotAction(ExMessage& exMessage, ChessBoard& chessBoard, int& count);
     void CloseWindowAction(ExMessage& exMessage, bool& isExit);
     void LoadChessBoardUI(ChessBoard& chessBoard);
     void DrawRes(int res);
+    void AIAction(ChessBoard& chessBoard, int& res);
 #endif //EASYX_CHESSBOARDUI_H

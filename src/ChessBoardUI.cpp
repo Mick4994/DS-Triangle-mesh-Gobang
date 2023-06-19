@@ -6,8 +6,9 @@
 #include <iostream>
 
 #include "../lib64/graphics.h"
-#include "../include/ChessBoardUI.h"
 #include "../include/JudgeWin.h"
+#include "../include/ChessBoardUI.h"
+#include "../include/AIChess.h"
 
 void LoadChessBoardUI(ChessBoard& chessBoard) {
     initgraph((BOARD_WEIGHT + 1) * WEIGHT_GRAPE, (BOARD_WEIGHT + 1) * WEIGHT_GRAPE);  // 创建绘图窗口
@@ -20,7 +21,7 @@ void LoadChessBoardUI(ChessBoard& chessBoard) {
 
     for (int i = 0; i < BOARD_WEIGHT; i++) {
         for (int j = 0; j < BOARD_HEIGHT; j++) {
-            if (chessBoard.Board[i][j] == 0) {//二维数组打印测试,以下4行运行其一
+            if (chessBoard.Board[i][j] == NONE) {//二维数组打印测试,以下4行运行其一
                 setfillcolor(BLACK);
                 fillcircle(
                         j * HEIGHT_GRAPE + HEIGHT_GRAPE / 2 + X_MOVE,
@@ -39,10 +40,10 @@ void DrawCloseButton() {
     settextcolor(WHITE);
     setbkmode(TRANSPARENT);
     drawtext('x',&R1,DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-
 }
 
 void ChessDotAction(ExMessage& exMessage, ChessBoard& chessBoard, int& count) {
+    int res = CONTINUE;
     for (int i = 0; i < BOARD_WEIGHT; i++) {
         for (int j = 0; j < BOARD_HEIGHT; j++) {
             if (chessBoard.Board[i][j] == 0) {
@@ -58,8 +59,11 @@ void ChessDotAction(ExMessage& exMessage, ChessBoard& chessBoard, int& count) {
                         setfillcolor(WHITE);
                     }
                     fillcircle(x, y, CHESS_RADIUS);
-                    std::cout << "count:" << count << " x:" << i << " y:" << j << std::endl;
-                    PrintJudgeWin(chessBoard.Board, i, j);
+//                    std::cout << "count:" << count << " x:" << i << " y:" << j << std::endl;
+                    PrintJudgeWin(chessBoard.Board, i, j, res);
+                    count++;
+
+                    AIAction(chessBoard, res);
                     count++;
                 }
             }
@@ -87,6 +91,19 @@ void DrawRes(int res) {
         drawtext("White win",&R1,DT_CENTER | DT_VCENTER | DT_SINGLELINE);
     } else if(res == BLACK_WIN)
         drawtext("Black win",&R1,DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+}
+
+void AIAction(ChessBoard& chessBoard, int& res) {
+    int bestRow = -1;
+    int bestCol = -1;
+    if(res == CONTINUE) {
+        aiMakeMove(chessBoard, bestRow, bestCol);
+        int x = bestCol * HEIGHT_GRAPE + HEIGHT_GRAPE / 2 + X_MOVE;
+        int y = bestRow * WEIGHT_GRAPE + WEIGHT_GRAPE;
+        setfillcolor(WHITE);
+        fillcircle(x, y, CHESS_RADIUS);
+        PrintJudgeWin(chessBoard.Board, bestRow, bestCol, res);
+    }
 }
 
 void CloseWindowAction(ExMessage& exMessage, bool& isExit) {
