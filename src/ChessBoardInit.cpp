@@ -3,18 +3,19 @@
 //
 
 #include "../include/ChessBoardInit.h"
+#include "../include/ChessBoardUI.h"
 #include <cmath>
 
 
 GomokuNode::GomokuNode() {
-    status = -1;
-    Line_x = Line_y = Line_z = -1;
+    status = NOT_READY;
+    Line_x = Line_y = Line_z = NOT_READY;
 }
 
 ChessBoard::ChessBoard() {
-    Board = new GomokuNode *[29];
-    for (int i = 0; i < 29; i++) {
-        Board[i] = new GomokuNode[15];
+    Board = new GomokuNode *[BOARD_WEIGHT];
+    for (int i = 0; i < BOARD_WEIGHT; i++) {
+        Board[i] = new GomokuNode[BOARD_HEIGHT];
     }
     ChessBoardInit();
 }

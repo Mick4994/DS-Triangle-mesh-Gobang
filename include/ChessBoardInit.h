@@ -15,6 +15,7 @@
     class ChessBoard {
     public:
         static int full;    //棋盘的落子数，用于判断落子是否已满
+        static int count;
         GomokuNode **Board;//二维数组棋盘
         ChessBoard();
 
