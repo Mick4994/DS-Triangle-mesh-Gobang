@@ -42,7 +42,7 @@ int JudgeWin(GomokuNode** chessBoard, int row, int cel) {
     int start_cel_y = 14 < 7 + Line_y ? 14 : 7 + Line_y;
 
     int start_row_z = Line_z <= 7 ? Line_z : Line_z * 2 - 7;
-    int start_cel_z = 0 < 7 - Line_z ? 0 : 7 - Line_z;
+    int start_cel_z = 0 > 7 - Line_z ? 0 : 7 - Line_z;
 
 
     //x方向，y方向，z方向上的遍历长度
