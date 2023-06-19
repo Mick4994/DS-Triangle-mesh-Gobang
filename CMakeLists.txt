@@ -17,11 +17,13 @@ add_executable(
         include/ChessBoardInit.h
         include/JudgeWin.h
         include/AIChess.h
+        include/BoardEvaluate.h
 
         src/main.cpp
         src/ChessBoardUI.cpp
         src/ChessBoardInit.cpp
         src/JudgeWin.cpp
         src/AIChess.cpp
+        src/BoardEvaluate.cpp
         )
 
