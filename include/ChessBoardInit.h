@@ -11,7 +11,8 @@
         static int count;
         int Board[29][15];//二维数组棋盘
         ChessBoard();
-
+        int lastrow;
+        int lastcel;
     private:
         void ChessBoardInit();
     };
