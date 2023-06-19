@@ -14,7 +14,7 @@
     int getLine_y(int row, int cel);
     int getLine_z(int row, int cel);
 
-    int JudgeWin(GomokuNode** chessBoard, int row, int cel);
-    void PrintJudgeWin(GomokuNode** chessBoard, int row, int cel);
-    void StopGame(GomokuNode** chessBoard);
+    int JudgeWin(int chessBoard[][15], int row, int cel);
+    void PrintJudgeWin(int chessBoard[][15], int row, int cel);
+    void StopGame(int chessBoard[][15]);
 #endif //EASYX_JUDGEWIN_H

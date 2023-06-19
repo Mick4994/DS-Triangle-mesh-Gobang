@@ -20,7 +20,7 @@ void LoadChessBoardUI(ChessBoard& chessBoard) {
 
     for (int i = 0; i < BOARD_WEIGHT; i++) {
         for (int j = 0; j < BOARD_HEIGHT; j++) {
-            if (chessBoard.Board[i][j].status == 0) {//二维数组打印测试,以下4行运行其一
+            if (chessBoard.Board[i][j] == 0) {//二维数组打印测试,以下4行运行其一
                 setfillcolor(BLACK);
                 fillcircle(
                         j * HEIGHT_GRAPE + HEIGHT_GRAPE / 2 + X_MOVE,
@@ -45,13 +45,13 @@ void DrawCloseButton() {
 void ChessDotAction(ExMessage& exMessage, ChessBoard& chessBoard, int& count) {
     for (int i = 0; i < BOARD_WEIGHT; i++) {
         for (int j = 0; j < BOARD_HEIGHT; j++) {
-            if (chessBoard.Board[i][j].status == 0) {
+            if (chessBoard.Board[i][j] == 0) {
 
                 int x = j * HEIGHT_GRAPE + HEIGHT_GRAPE / 2 + X_MOVE;
                 int y = i * WEIGHT_GRAPE + WEIGHT_GRAPE;
 
                 if(pow(exMessage.x - x, 2) + pow(exMessage.y - y, 2) <= pow(ACTION_RADIUS, 2)) {
-                    chessBoard.Board[i][j].status = count % 2 + 1;
+                    chessBoard.Board[i][j] = count % 2 + 1;
                     if(count % 2 + 1 == BLACK_CHESS) {
                         setfillcolor(BLACK);
                     } else {
