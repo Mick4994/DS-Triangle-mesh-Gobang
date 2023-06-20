@@ -8,11 +8,14 @@
 
 #include "../include/AIChess.h"
 
+#include "../include/BoardEvaluate.h"
+
 // 极大极小搜索算法
 int minimax(ChessBoard &board, int depth, int alpha, int beta, bool maximizingPlayer) {
     // 终止条件：达到最大搜索深度或棋盘已满
     if (depth == MAX_DEPTH || board.full) {
-        return CONTINUE;
+        int res = evaluate(board.Board);
+        return res;
     }
 
     // 当前局面评估分数
@@ -94,6 +97,7 @@ void aiMakeMove(ChessBoard &board, int& bestRow, int& bestCol) {
                 //board.printBoard();
                 // 评估当前局面分数
                 int score = minimax(board, 0, MIN_NUM, MAX_NUM, false);
+
 
                 // 恢复当前位置的状态
                 board.Board[i][j] = NONE;
