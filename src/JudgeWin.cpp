@@ -107,13 +107,19 @@ void StopGame(int chessBoard[][15]) {
             chessBoard[i][j] = NOT_READY;
         }
     }
+    ChessBoard::end = true;
 }
 
 void PrintJudgeWin(int chessBoard[][15], int row, int cel, int& res)
 {
     res = JudgeWin(chessBoard, row, cel);
     if (res == CONTINUE) {
-        std::cout << "Continue" << std::endl;
+        if(ChessBoard::full) {
+            std::cout << "Drawn game" << std::endl;
+            StopGame(chessBoard);
+        } else {
+            std::cout << "Continue" << std::endl;
+        }
     }
     else if (res == WHITE_WIN) {
         std::cout << "White win" << std::endl;
