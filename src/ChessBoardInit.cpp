@@ -4,7 +4,6 @@
 
 #include "../include/ChessBoardInit.h"
 #include "../include/ChessBoardUI.h"
-#include <cmath>
 
 
 ChessBoard::ChessBoard() {
@@ -13,7 +12,7 @@ ChessBoard::ChessBoard() {
 
 //计算
 void ChessBoard::ChessBoardInit() {
-    memset(Board, -1, sizeof(Board));
+    memset(Board, NOT_READY, sizeof(Board));
     for (int row = 0; row <= 7; row++) {//第0行到第7行
         for (int cel = 7 - row; cel <= 7 + row; cel += 2) {
             Board[row][cel] = 0;

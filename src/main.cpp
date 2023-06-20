@@ -9,6 +9,7 @@
 
 int ChessBoard::full = 0;
 int ChessBoard::count = 0;
+bool ChessBoard::end = false;
 
 int main() {
     ChessBoard chessBoard;
@@ -32,6 +33,15 @@ int main() {
                 break;
             default:
                 break;
+        }
+        if(ChessBoard::end) {
+            ChessBoard::end = false;
+            int choose = MessageBox(NULL, _T("Start a new Game?"), _T("Game Over"),MB_OKCANCEL);
+            if(choose == IDOK) {
+                closegraph();
+                chessBoard.ChessBoardInit();
+                LoadChessBoardUI(chessBoard);
+            }
         }
     }
     closegraph();

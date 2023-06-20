@@ -4,6 +4,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <windows.h>
 
 #include "../lib64/graphics.h"
 #include "../include/JudgeWin.h"
@@ -11,7 +12,21 @@
 #include "../include/AIChess.h"
 
 void LoadChessBoardUI(ChessBoard& chessBoard) {
-    initgraph((BOARD_WEIGHT + 1) * WEIGHT_GRAPE, (BOARD_WEIGHT + 1) * WEIGHT_GRAPE);  // 创建绘图窗口
+    int weight = (BOARD_WEIGHT + 1) * WEIGHT_GRAPE;
+    int height = (BOARD_WEIGHT + 1) * WEIGHT_GRAPE;
+    HWND hwnd = initgraph(weight, height);  // 创建绘图窗口
+
+    HDC hdcScreen = GetDC(NULL);
+    int screenWeight = GetDeviceCaps(hdcScreen, HORZRES);
+    int screenHeight = GetDeviceCaps(hdcScreen, VERTRES);
+    DeleteObject(hdcScreen);
+
+    int x0 = screenWeight / 2 - weight / 2;
+    int y0 = screenHeight / 2 - height / 2;
+    x0 = x0 > 0 ? x0 : 0;
+    y0 = y0 > 0 ? y0 : 0;
+
+    MoveWindow(hwnd, (int)x0, (int)y0, int(weight + 5), int(height + 30), false);
     IMAGE background;
     loadimage(&background,
               _T("../res/chessboard.png"));
@@ -44,9 +59,11 @@ void DrawCloseButton() {
 
 void ChessDotAction(ExMessage& exMessage, ChessBoard& chessBoard, int& count) {
     int res = CONTINUE;
+    bool isFull = true;
     for (int i = 0; i < BOARD_WEIGHT; i++) {
         for (int j = 0; j < BOARD_HEIGHT; j++) {
             if (chessBoard.Board[i][j] == 0) {
+                isFull = false;
 
                 int x = j * HEIGHT_GRAPE + HEIGHT_GRAPE / 2 + X_MOVE;
                 int y = i * WEIGHT_GRAPE + WEIGHT_GRAPE;
@@ -68,6 +85,9 @@ void ChessDotAction(ExMessage& exMessage, ChessBoard& chessBoard, int& count) {
                 }
             }
         }
+    }
+    if(isFull) {
+        ChessBoard::full = 1;
     }
 }
 

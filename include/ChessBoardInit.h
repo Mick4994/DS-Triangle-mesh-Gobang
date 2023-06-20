@@ -11,11 +11,11 @@
     public:
         static int full;    //棋盘的落子数，用于判断落子是否已满
         static int count;
+        static bool end;
         int Board[BOARD_WEIGHT][BOARD_HEIGHT];//二维数组棋盘
         ChessBoard();
         int lastrow;
         int lastcel;
-    private:
         void ChessBoardInit();
     };
 #endif //EASYX_CHESSBOARDINIT_H
