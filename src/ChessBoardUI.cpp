@@ -11,7 +11,7 @@
 #include "../include/ChessBoardUI.h"
 #include "../include/AIChess.h"
 
-void LoadChessBoardUI(ChessBoard& chessBoard) {
+void LoadChessBoardUI(ChessBoard& chessBoard, bool isVsAI) {
     int weight = (BOARD_WEIGHT + 1) * WEIGHT_GRAPE;
     int height = (BOARD_WEIGHT + 1) * WEIGHT_GRAPE;
     HWND hwnd = initgraph(weight, height);  // 创建绘图窗口
@@ -46,6 +46,7 @@ void LoadChessBoardUI(ChessBoard& chessBoard) {
             }
         }
     }
+    DrawMode(isVsAI);
 }
 
 void DrawCloseButton() {
@@ -57,7 +58,7 @@ void DrawCloseButton() {
     drawtext('x',&R1,DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 }
 
-void ChessDotAction(ExMessage& exMessage, ChessBoard& chessBoard, int& count) {
+void ChessDotAction(ExMessage& exMessage, ChessBoard& chessBoard, int& count, bool isVsAI) {
     int res = CONTINUE;
     bool isFull = true;
     for (int i = 0; i < BOARD_WEIGHT; i++) {
@@ -72,16 +73,21 @@ void ChessDotAction(ExMessage& exMessage, ChessBoard& chessBoard, int& count) {
                     chessBoard.Board[i][j] = count % 2 + 1;
                     if(count % 2 + 1 == BLACK_CHESS) {
                         setfillcolor(BLACK);
+                        DrawWhoDrop("NEXT:WHITE");
                     } else {
                         setfillcolor(WHITE);
+                        DrawWhoDrop("NEXT:BLACK");
                     }
                     fillcircle(x, y, CHESS_RADIUS);
 //                    std::cout << "count:" << count << " x:" << i << " y:" << j << std::endl;
                     PrintJudgeWin(chessBoard.Board, i, j, res);
                     count++;
 
-                    AIAction(chessBoard, res);
-                    count++;
+                    if(isVsAI) {
+                        AIAction(chessBoard, res);
+                        DrawWhoDrop("NEXT:BLACK");
+                        count++;
+                    }
                 }
             }
         }
@@ -89,6 +95,44 @@ void ChessDotAction(ExMessage& exMessage, ChessBoard& chessBoard, int& count) {
     if(isFull) {
         ChessBoard::full = 1;
     }
+}
+
+void DrawMode(bool isVsAI) {
+    RECT R1={MODE_DISPLAY_X1,
+             MODE_DISPLAY_Y1,
+             MODE_DISPLAY_X2,
+             MODE_DISPLAY_Y2};
+    settextcolor(WHITE);
+    LPCTSTR lpszFace;
+    settextstyle(
+            MODE_DISPLAY_Y2 - MODE_DISPLAY_Y1,
+            (MODE_DISPLAY_X2 - MODE_DISPLAY_X1 ) / 10,
+            lpszFace
+    );
+    setbkmode(OPAQUE);
+    setbkcolor(BLACK);
+    if(isVsAI) {
+        drawtext("Vs AI",&R1,DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+    } else {
+        drawtext("Vs Person",&R1,DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+    }
+}
+
+void DrawWhoDrop(std::string whodrop) {
+    RECT R1={WHODROP_DISPLAY_X1,
+             WHODROP_DISPLAY_Y1,
+             WHODROP_DISPLAY_X2,
+             WHODROP_DISPLAY_Y2};
+    settextcolor(WHITE);
+    LPCTSTR lpszFace;
+    settextstyle(
+            WHODROP_DISPLAY_Y2 - WHODROP_DISPLAY_Y1,
+            (WHODROP_DISPLAY_X2 - WHODROP_DISPLAY_X1 ) / 10,
+            lpszFace
+    );
+    setbkmode(OPAQUE);
+    setbkcolor(BLACK);
+    drawtext(_T(whodrop.c_str()), &R1,DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 }
 
 void DrawRes(int res) {

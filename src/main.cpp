@@ -12,8 +12,13 @@ int ChessBoard::count = 0;
 bool ChessBoard::end = false;
 
 int main() {
+    bool isVsAI = false;
+    int chooseMode = MessageBox(NULL, _T("Vs AI Or Vs Person?\n OK for Vs AI, Cancel for Vs Person"), _T("Start Game"),MB_OKCANCEL);
+    if(chooseMode == IDOK) {
+        isVsAI = true;
+    }
     ChessBoard chessBoard;
-    LoadChessBoardUI(chessBoard);
+    LoadChessBoardUI(chessBoard, isVsAI);
 
     bool isExit = false;
 
@@ -24,7 +29,7 @@ int main() {
             case WM_LBUTTONDOWN:
                 if(!isDown) {
                     isDown = true;
-                    ChessDotAction(exMessage, chessBoard, ChessBoard::count);
+                    ChessDotAction(exMessage, chessBoard, ChessBoard::count, isVsAI);
                     CloseWindowAction(exMessage, isExit);
                 }
                 break;
@@ -40,7 +45,13 @@ int main() {
             if(choose == IDOK) {
                 closegraph();
                 chessBoard.ChessBoardInit();
-                LoadChessBoardUI(chessBoard);
+                chooseMode = MessageBox(NULL, _T("Vs AI Or Vs Person?\n OK for Vs AI, Cancel for Vs Person"), _T("Start Game"),MB_OKCANCEL);
+                if(chooseMode == IDOK) {
+                    isVsAI = true;
+                } else {
+                    isVsAI = false;
+                }
+                LoadChessBoardUI(chessBoard, isVsAI);
             }
         }
     }
