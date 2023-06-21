@@ -59,7 +59,7 @@ This is the homework of Data Structure lesson
             - 如果cur_color与color不同或为空，则计数器归零。
             - 如果计数器达到5，则返回color。
     - 如果三个方向都没有返回color，则返回0。
-- 定义一个函数PrintJudgeWin来打印胜负结果，并根据结果修改棋盘状态，参数为棋盘和落子坐标，引用传递一个res变量来存储游戏状态：
+- 定义一个函数PrintJudgeWin来打印胜负结果，参数为棋盘和落子坐标，引用传递一个res变量来存储游戏状态：
     - 调用JudgeWin函数来获取游戏状态，并赋值给res变量。
     - 如果res为CONTINUE，则判断棋盘是否已满，如果是，则打印"Drawn game"，并调用StopGame函数；如果不是，则打印"Continue"。
     - 如果res为WHITE_WIN，则打印"White win"，并调用StopGame函数。
