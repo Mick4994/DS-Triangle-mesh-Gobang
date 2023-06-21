@@ -21,7 +21,9 @@ int getLine_z(int row, int cel) {
     return abs(row - cel + 7) / 2;
 }
 
-//判断胜负，参数为棋盘和落子的坐标，返回值为0（无胜负），1（白子胜），2（黑子胜）   chessBoard[row][cel] 为color
+// 这个函数判断是否落子方是否胜利
+// 参数是棋盘和落子的坐标
+// 返回值是 0（未分出胜负），1（白子胜），2（黑子胜）
 int JudgeWin(int chessBoard[][15], int row, int cel) {
 
     //x方向，y方向，z方向上的线的编号
