@@ -118,7 +118,7 @@ void PrintJudgeWin(int chessBoard[][15], int row, int cel, int& res)
             std::cout << "Drawn game" << std::endl;
             StopGame(chessBoard);
         } else {
-            std::cout << "Continue" << std::endl;
+//            std::cout << "Continue" << std::endl;
         }
     }
     else if (res == WHITE_WIN) {

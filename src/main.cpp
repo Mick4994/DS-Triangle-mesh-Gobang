@@ -13,7 +13,9 @@ bool ChessBoard::end = false;
 
 int main() {
     bool isVsAI = false;
-    int chooseMode = MessageBox(NULL, _T("Vs AI Or Vs Person?\n OK for Vs AI, Cancel for Vs Person"), _T("Start Game"),MB_OKCANCEL);
+    int chooseMode = MessageBox(NULL,
+                                _T("Vs AI Or Vs Person?\n OK for Vs AI, Cancel for Vs Person"),
+                                _T("Start Game"),MB_OKCANCEL);
     if(chooseMode == IDOK) {
         isVsAI = true;
     }
@@ -41,11 +43,14 @@ int main() {
         }
         if(ChessBoard::end) {
             ChessBoard::end = false;
-            int choose = MessageBox(NULL, _T("Start a new Game?"), _T("Game Over"),MB_OKCANCEL);
+            int choose = MessageBox(NULL, _T("Start a new Game?"),
+                                    _T("Game Over"),MB_OKCANCEL);
             if(choose == IDOK) {
                 closegraph();
                 chessBoard.ChessBoardInit();
-                chooseMode = MessageBox(NULL, _T("Vs AI Or Vs Person?\n OK for Vs AI, Cancel for Vs Person"), _T("Start Game"),MB_OKCANCEL);
+                chooseMode = MessageBox(NULL,
+                                        _T("Vs AI Or Vs Person?\n OK for Vs AI, Cancel for Vs Person"),
+                                        _T("Start Game"),MB_OKCANCEL);
                 if(chooseMode == IDOK) {
                     isVsAI = true;
                 } else {

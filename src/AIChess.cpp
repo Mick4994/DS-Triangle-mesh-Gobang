@@ -13,7 +13,7 @@
 // 极大极小搜索算法
 int minimax(ChessBoard &board, int depth, int alpha, int beta, bool maximizingPlayer) {
     // 终止条件：达到最大搜索深度或棋盘已满
-    if (depth == MAX_DEPTH || board.full) {
+    if (depth == MAX_DEPTH || board.full) { 
         int res = evaluate(board.Board);
         return res;
     }
