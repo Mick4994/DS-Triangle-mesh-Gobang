@@ -39,13 +39,13 @@ This is the homework of Data Structure lesson
 <div align="center">
 <img src="doc/img/StartChoose.png" width = 300 height = 200 /> 
 <br>
-图2（游玩状态显示）<br><br>
+图3（游玩模式选择）<br><br>
 </div>
 
 <div align="center">
 <img src="doc/img/EndChoose.png" width = 300 height = 200 /> 
 <br>
-图2（游玩状态显示）<br><br>
+图4（结束选择弹窗）<br><br>
 </div>
 
 ___
